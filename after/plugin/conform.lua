@@ -10,6 +10,7 @@ conform.setup({
     typescriptreact = { "prettier" },
     javascript = { "prettier" },
     javascriptreact = { "prettier" },
+    gdscript = { "gdformat" }
   },
   format_on_save = {
     lsp_fallback = true,

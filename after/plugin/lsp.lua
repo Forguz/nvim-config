@@ -1,6 +1,5 @@
 local lsp_zero = require("lsp-zero")
 local lspconfig = require("lspconfig")
-local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 lsp_zero.preset('recommended')
 
 lsp_zero.on_attach(function(client, bufnr)
@@ -28,7 +27,7 @@ lsp_zero.set_sign_icons({
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = { 'tsserver', 'emmet_language_server', 'clangd', 'eslint', 'cssmodules_ls', 'lua_ls', 'tailwindcss', 'rust_analyzer' },
+  ensure_installed = { 'tsserver', 'emmet_language_server', 'clangd', 'eslint', 'cssmodules_ls', 'lua_ls', 'tailwindcss', 'rust_analyzer', 'volar' },
   handlers = {
     lsp_zero.default_setup,
     lua_ls = function()
@@ -40,6 +39,7 @@ require('mason-lspconfig').setup({
     end,
   }
 })
+lspconfig.gdscript.setup {}
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }

@@ -7,13 +7,23 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- Themes
+  use('rebelot/kanagawa.nvim')
+  use('Tsuzat/NeoSolarized.nvim')
+  use('tiagovla/tokyodark.nvim')
+  use('pineapplegiant/spaceduck')
+  use('zootedb0t/citruszest.nvim')
+  use('ayu-theme/ayu-vim')
+  use('jaredgorski/spacecamp')
+  use { "rose-pine/neovim", as = "rose-pine" }
+  use { "catppuccin/nvim", as = "catppuccin" }
+  use "EdenEast/nightfox.nvim"
+
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.5',
     -- or                            , branch = '0.1.x',
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
-
-  use({ 'rose-pine/neovim', as = 'rose-pine' })
 
   use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
   use('nvim-treesitter/playground')
@@ -22,13 +32,15 @@ return require('packer').startup(function(use)
     branch = 'harpoon2',
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
+  use 'mfussenegger/nvim-dap'
+  use('lommix/godot.nvim')
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
   use('epheien/termdbg')
   use('mattn/emmet-vim')
   use('stevearc/conform.nvim')
   use('mfussenegger/nvim-lint')
-  use('rebelot/kanagawa.nvim')
+  use('habamax/vim-godot')
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
