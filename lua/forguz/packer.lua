@@ -9,15 +9,7 @@ return require('packer').startup(function(use)
 
   -- Themes
   use('rebelot/kanagawa.nvim')
-  use('Tsuzat/NeoSolarized.nvim')
-  use('tiagovla/tokyodark.nvim')
-  use('pineapplegiant/spaceduck')
-  use('zootedb0t/citruszest.nvim')
-  use('ayu-theme/ayu-vim')
-  use('jaredgorski/spacecamp')
   use { "rose-pine/neovim", as = "rose-pine" }
-  use { "catppuccin/nvim", as = "catppuccin" }
-  use "EdenEast/nightfox.nvim"
 
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.5',

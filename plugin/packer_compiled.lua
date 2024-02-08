@@ -79,26 +79,6 @@ _G.packer_plugins = {
     path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
-  ["NeoSolarized.nvim"] = {
-    loaded = true,
-    path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/NeoSolarized.nvim",
-    url = "https://github.com/Tsuzat/NeoSolarized.nvim"
-  },
-  ["ayu-vim"] = {
-    loaded = true,
-    path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/ayu-vim",
-    url = "https://github.com/ayu-theme/ayu-vim"
-  },
-  catppuccin = {
-    loaded = true,
-    path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/catppuccin",
-    url = "https://github.com/catppuccin/nvim"
-  },
-  ["citruszest.nvim"] = {
-    loaded = true,
-    path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/citruszest.nvim",
-    url = "https://github.com/zootedb0t/citruszest.nvim"
-  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -143,11 +123,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
-  },
-  ["nightfox.nvim"] = {
-    loaded = true,
-    path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
-    url = "https://github.com/EdenEast/nightfox.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
@@ -194,16 +169,6 @@ _G.packer_plugins = {
     path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/rose-pine",
     url = "https://github.com/rose-pine/neovim"
   },
-  spacecamp = {
-    loaded = true,
-    path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/spacecamp",
-    url = "https://github.com/jaredgorski/spacecamp"
-  },
-  spaceduck = {
-    loaded = true,
-    path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/spaceduck",
-    url = "https://github.com/pineapplegiant/spaceduck"
-  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -213,11 +178,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/termdbg",
     url = "https://github.com/epheien/termdbg"
-  },
-  ["tokyodark.nvim"] = {
-    loaded = true,
-    path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/tokyodark.nvim",
-    url = "https://github.com/tiagovla/tokyodark.nvim"
   },
   undotree = {
     loaded = true,
