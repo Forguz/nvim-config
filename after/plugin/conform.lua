@@ -6,6 +6,7 @@ conform.setup({
     c = { "clang_format" },
     html = { "prettier" },
     css = { "prettier" },
+    vue = { "prettier" },
     typescript = { "prettier" },
     typescriptreact = { "prettier" },
     javascript = { "prettier" },

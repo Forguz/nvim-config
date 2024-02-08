@@ -4,7 +4,10 @@ lsp_zero.preset('recommended')
 
 lsp_zero.on_attach(function(client, bufnr)
   lsp_zero.default_keymaps({ buffer = bufnr })
-  lsp_zero.buffer_autoformat()
+  -- disable buffer format for vue so conform can apply prettier
+  if vim.bo.filetype ~= 'vue' then
+    lsp_zero.buffer_autoformat()
+  end
 end)
 
 lsp_zero.format_mapping('gq', {
@@ -13,7 +16,7 @@ lsp_zero.format_mapping('gq', {
     timeout_ms = 10000,
   },
   servers = {
-    ['eslint'] = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+    ['eslint'] = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'vue' },
     ['rust_analyzer'] = { 'rust' },
   }
 })
@@ -25,7 +28,10 @@ lsp_zero.set_sign_icons({
   info = '»',
 })
 
-require('mason').setup({})
+require('mason').setup({
+  ensure_installed = { 'prettier', 'prettierd' }
+})
+
 require('mason-lspconfig').setup({
   ensure_installed = { 'tsserver', 'emmet_language_server', 'clangd', 'eslint', 'cssmodules_ls', 'lua_ls', 'tailwindcss', 'rust_analyzer', 'volar' },
   handlers = {
