@@ -55,7 +55,8 @@ cmp.setup({
     { name = 'path' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
-    { name = 'eslint' }
+    { name = 'eslint' },
+    { name = 'codeium' }
   },
   formatting = lsp_zero.cmp_format(),
   mapping = cmp.mapping.preset.insert({
