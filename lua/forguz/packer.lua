@@ -8,7 +8,6 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- Themes
-  use('rebelot/kanagawa.nvim')
   use { "rose-pine/neovim", as = "rose-pine" }
 
   use {

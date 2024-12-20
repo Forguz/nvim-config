@@ -41,11 +41,26 @@ require('mason-lspconfig').setup({
       lspconfig.lua_ls.setup(lua_opts)
     end,
     eslint = function()
-      lspconfig.eslint.setup {}
+      lspconfig.eslint.setup {
+        settings = {
+          experimental = {
+            useFlatConfig = false, -- option not in the latest eslint-lsp
+          },
+        }
+      }
     end,
   }
 })
+
 lspconfig.gdscript.setup {}
+lspconfig.eslint.setup {
+  settings = {
+    useFlatConfig = false,
+    experimental = {
+      useFlatConfig = nil, -- option not in the latest eslint-lsp
+    },
+  }
+}
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }

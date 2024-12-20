@@ -4,7 +4,7 @@ conform.setup({
     lua = { "stylua" },
     python = { "isort", "black" },
     c = { "clang_format" },
-    html = { "prettier" },
+    html = {},
     css = { "prettier" },
     vue = { "prettier" },
     typescript = { "prettier" },
