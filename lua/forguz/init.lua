@@ -1,3 +1,4 @@
 require("forguz.remap")
 require("forguz.set")
-require("forguz.colors")
+require('forguz.lazy_init')
+
