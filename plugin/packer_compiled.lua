@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/Users/nicolasdellazzeri/.cache/nvim/packer_hererocks/2.1.1700008891/share/lua/5.1/?.lua;/Users/nicolasdellazzeri/.cache/nvim/packer_hererocks/2.1.1700008891/share/lua/5.1/?/init.lua;/Users/nicolasdellazzeri/.cache/nvim/packer_hererocks/2.1.1700008891/lib/luarocks/rocks-5.1/?.lua;/Users/nicolasdellazzeri/.cache/nvim/packer_hererocks/2.1.1700008891/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/Users/nicolasdellazzeri/.cache/nvim/packer_hererocks/2.1.1700008891/lib/lua/5.1/?.so"
+local package_path_str = "/Users/nicolasdellazzeri/.cache/nvim/packer_hererocks/2.1.1748459687/share/lua/5.1/?.lua;/Users/nicolasdellazzeri/.cache/nvim/packer_hererocks/2.1.1748459687/share/lua/5.1/?/init.lua;/Users/nicolasdellazzeri/.cache/nvim/packer_hererocks/2.1.1748459687/lib/luarocks/rocks-5.1/?.lua;/Users/nicolasdellazzeri/.cache/nvim/packer_hererocks/2.1.1748459687/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/Users/nicolasdellazzeri/.cache/nvim/packer_hererocks/2.1.1748459687/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -84,12 +84,6 @@ _G.packer_plugins = {
     path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
-  ["codeium.nvim"] = {
-    config = { "\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\fcodeium\frequire\0" },
-    loaded = true,
-    path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/codeium.nvim",
-    url = "https://github.com/Exafunction/codeium.nvim"
-  },
   ["conform.nvim"] = {
     loaded = true,
     path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/conform.nvim",
@@ -104,16 +98,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/godot.nvim",
     url = "https://github.com/lommix/godot.nvim"
-  },
-  harpoon = {
-    loaded = true,
-    path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/harpoon",
-    url = "https://github.com/ThePrimeagen/harpoon"
-  },
-  ["kanagawa.nvim"] = {
-    loaded = true,
-    path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/kanagawa.nvim",
-    url = "https://github.com/rebelot/kanagawa.nvim"
   },
   ["lsp-zero.nvim"] = {
     loaded = true,
@@ -195,18 +179,19 @@ _G.packer_plugins = {
     path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   },
-  ["vim-godot"] = {
+  ["windsurf.nvim"] = {
+    config = { "\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\fcodeium\frequire\0" },
     loaded = true,
-    path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/vim-godot",
-    url = "https://github.com/habamax/vim-godot"
+    path = "/Users/nicolasdellazzeri/.local/share/nvim/site/pack/packer/start/windsurf.nvim",
+    url = "https://github.com/Exafunction/windsurf.nvim"
   }
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: codeium.nvim
-time([[Config for codeium.nvim]], true)
-try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\fcodeium\frequire\0", "config", "codeium.nvim")
-time([[Config for codeium.nvim]], false)
+-- Config for: windsurf.nvim
+time([[Config for windsurf.nvim]], true)
+try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\fcodeium\frequire\0", "config", "windsurf.nvim")
+time([[Config for windsurf.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

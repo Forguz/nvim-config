@@ -33,7 +33,7 @@ require('mason').setup({
 })
 
 require('mason-lspconfig').setup({
-  ensure_installed = { 'tsserver', 'emmet_language_server', 'clangd', 'eslint', 'cssmodules_ls', 'lua_ls', 'tailwindcss', 'rust_analyzer', 'volar' },
+  ensure_installed = { 'ts_ls', 'emmet_language_server', 'clangd', 'eslint', 'cssmodules_ls', 'lua_ls', 'tailwindcss', 'rust_analyzer', 'volar' },
   handlers = {
     lsp_zero.default_setup,
     lua_ls = function()
