@@ -22,11 +22,10 @@ return {
     })
 
     vim.keymap.set({ "n", "v" }, "<leader>mp", function()
-      conform.format({
+      require("conform").format({
         lsp_fallback = true,
         timeout_ms = 500,
       })
     end)
   end
 }
-  
