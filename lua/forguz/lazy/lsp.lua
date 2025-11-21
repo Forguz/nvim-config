@@ -38,7 +38,8 @@ return {
         'cssmodules_ls',
         'lua_ls',
         'tailwindcss',
-        'rust_analyzer'
+        'rust_analyzer',
+        'biome'
       },
       handlers = {
         function(server_name) -- default handler (optional)
