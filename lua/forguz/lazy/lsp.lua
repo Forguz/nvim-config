@@ -68,6 +68,29 @@ return {
             }
           }
         end,
+        biome = function()
+          local on_attach = function(client, bufnr)
+            if client.resolved_capabilities.document_formatting then
+              vim.api.nvim_create_autocmd("BuffWritePre", {
+                group = vim.api.nvim_create_augroup("LspFormat" .. bufnr, { clear = true }),
+                buffer = bufnr,
+                callback = function()
+                  vim.lsp.buf.format({
+                    async = false,
+                    timeout_ms = 1000,
+                    filter = function(c)
+                      return c.name == "biome"
+                    end,
+                  })
+                end,
+              })
+            end
+          end
+          lspconfig.biome.setup = {
+            capabilities = capabilities,
+            on_attach = on_attach
+          }
+        end
       }
     })
 
