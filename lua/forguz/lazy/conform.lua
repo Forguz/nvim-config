@@ -9,10 +9,10 @@ return {
         html = {},
         css = { "prettier" },
         vue = { "prettier" },
-        typescript = { "prettier" },
-        typescriptreact = { "prettier" },
-        javascript = { "prettier" },
-        javascriptreact = { "prettier" },
+        typescript = { "biome", "prettier" },
+        typescriptreact = { "biome", "prettier" },
+        javascript = { "biome", "prettier" },
+        javascriptreact = { "biome", "prettier" },
         gdscript = { "gdformat" }
       },
       format_on_save = {
@@ -29,4 +29,3 @@ return {
     end)
   end
 }
-  
