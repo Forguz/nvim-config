@@ -1,23 +1,26 @@
 return {
   'stevearc/conform.nvim',
+  lazy = false,
+  event = { "BufWritePre" },
+  cmd = { "ConformInfo", "ConformFormat" },
   config = function()
-    require("conform").setup({
+    local conform = require("conform")
+    conform.setup({
+      format_on_save = {
+        lsp_format = true,
+        timeout_ms = 500,
+      },
       formatters_by_ft = {
         lua = { "stylua" },
         python = { "isort", "black" },
         c = { "clang_format" },
         html = {},
-        css = { "prettier" },
-        vue = { "prettier" },
-        typescript = { "biome", "prettier" },
-        typescriptreact = { "biome", "prettier" },
-        javascript = { "biome", "prettier" },
-        javascriptreact = { "biome", "prettier" },
-        gdscript = { "gdformat" }
-      },
-      format_on_save = {
-        lsp_fallback = true,
-        timeout_ms = 500,
+        css = { "prettierd", "prettier" },
+        vue = { "prettierd", "prettier" },
+        typescript = { "biome", "prettierd", "prettier" },
+        typescriptreact = { "biome", "prettierd", "prettier" },
+        javascript = { "biome", "prettierd", "prettier" },
+        javascriptreact = { "biome", "prettierd", "prettier" },
       },
     })
 

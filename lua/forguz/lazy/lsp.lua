@@ -47,6 +47,20 @@ return {
             capabilities = capabilities
           }
         end,
+        ts_ls = function()
+          -- Create a copy of the base capabilities
+          local ts_ls_capabilities = vim.tbl_deep_extend("force", {}, capabilities)
+
+          -- 🛑 DISABLE DOCUMENT FORMATTING
+          ts_ls_capabilities.document_formatting = false
+          ts_ls_capabilities.document_range_formatting = false
+
+          -- All other ts_ls features (diagnostics, completions, etc.) remain active
+          lspconfig.ts_ls.setup {
+            capabilities = ts_ls_capabilities,
+            -- ... other settings
+          }
+        end,
         lua_ls = function()
           lspconfig.lua_ls.setup {
             capabilities = capabilities,
@@ -60,7 +74,14 @@ return {
           }
         end,
         eslint = function()
+          -- Create a copy of the base capabilities
+          local eslint_capabilities = vim.tbl_deep_extend("force", {}, capabilities)
+
+          -- 🛑 DISABLE DOCUMENT FORMATTING
+          eslint_capabilities.document_formatting = false
+          eslint_capabilities.document_range_formatting = false
           lspconfig.eslint.setup {
+            capabilities = eslint_capabilities,
             settings = {
               experimental = {
                 useFlatConfig = nil, -- option not in the latest eslint-lsp
@@ -69,30 +90,57 @@ return {
           }
         end,
         biome = function()
-          local on_attach = function(client, bufnr)
-            if client.resolved_capabilities.document_formatting then
-              vim.api.nvim_create_autocmd("BuffWritePre", {
-                group = vim.api.nvim_create_augroup("LspFormat" .. bufnr, { clear = true }),
-                buffer = bufnr,
-                callback = function()
-                  vim.lsp.buf.format({
-                    async = false,
-                    timeout_ms = 1000,
-                    filter = function(c)
-                      return c.name == "biome"
-                    end,
-                  })
-                end,
-              })
+          local on_attach = function(client)
+            if not client or not client.resolved_capabilities then
+              print("Biome client failed to initialize fully. Skipping on_attach.")
+              return -- Exit the function early if capabilities are nil
             end
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              group = vim.api.nvim_create_augroup("LspBiomeFixAllOnSave", { clear = true }),
+              -- Target files where Biome should run (adjust this list as needed)
+              pattern = {
+                "*.js", "*.jsx", "*.ts", "*.tsx", "*.json",
+              },
+              callback = function(args)
+                -- Check if the Biome LSP client is available for the current buffer
+                -- Trigger the Biome 'source.fixAll.biome' code action
+                vim.lsp.buf.code_action({
+                  bufnr = args.buf,
+                  context = {
+                    only = { "source.fixAll.biome" },
+                    isPreferred = true,
+                  },
+                  apply = true,      -- Apply the changes immediately
+                  timeout_ms = 2000, -- Time for the server to respond
+                })
+              end,
+            })
           end
-          lspconfig.biome.setup = {
+
+          lspconfig.biome.setup({
             capabilities = capabilities,
             on_attach = on_attach
-          }
+          })
         end
       }
     })
+
+    vim.keymap.set({ "n", "v" }, "<leader>mf", function()
+      -- Check if the LSP function is loaded before calling it
+      if vim.lsp and vim.lsp.buf and vim.lsp.buf.code_action then
+        -- Trigger the Biome 'source.fixAll.biome' code action on the current buffer
+        vim.lsp.buf.code_action({
+          context = {
+            only = { "source.fixAll.biome" },
+            isPreferred = true,
+          },
+          apply = true,
+          timeout_ms = 2000, -- Use a generous timeout
+        })
+      else
+        print("LSP functions not available yet.")
+      end
+    end, { desc = "Biome: Fix All (LSP Code Action)" })
 
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
     cmp.setup({
