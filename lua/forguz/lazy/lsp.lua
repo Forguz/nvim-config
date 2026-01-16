@@ -89,39 +89,6 @@ return {
             }
           }
         end,
-        biome = function()
-          local on_attach = function(client)
-            if not client or not client.resolved_capabilities then
-              print("Biome client failed to initialize fully. Skipping on_attach.")
-              return -- Exit the function early if capabilities are nil
-            end
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              group = vim.api.nvim_create_augroup("LspBiomeFixAllOnSave", { clear = true }),
-              -- Target files where Biome should run (adjust this list as needed)
-              pattern = {
-                "*.js", "*.jsx", "*.ts", "*.tsx", "*.json",
-              },
-              callback = function(args)
-                -- Check if the Biome LSP client is available for the current buffer
-                -- Trigger the Biome 'source.fixAll.biome' code action
-                vim.lsp.buf.code_action({
-                  bufnr = args.buf,
-                  context = {
-                    only = { "source.fixAll.biome" },
-                    isPreferred = true,
-                  },
-                  apply = true,      -- Apply the changes immediately
-                  timeout_ms = 2000, -- Time for the server to respond
-                })
-              end,
-            })
-          end
-
-          lspconfig.biome.setup({
-            capabilities = capabilities,
-            on_attach = on_attach
-          })
-        end
       }
     })
 

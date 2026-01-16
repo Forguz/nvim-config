@@ -3,10 +3,11 @@ return {
   config = function()
     local nvim_lint = require("lint")
     nvim_lint.linters_by_ft = {
-      javascript = { 'eslint' },
-      javascriptreact = { 'eslint' },
-      typescript = { 'eslint' },
-      typescriptreact = { 'eslint' },
+      markdown = { 'vale' },
+      javascript = { 'biomejs' },
+      javascriptreact = { 'biomejs' },
+      typescript = { 'biomejs' },
+      typescriptreact = { 'biomejs' },
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true });

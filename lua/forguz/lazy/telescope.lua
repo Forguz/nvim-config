@@ -1,6 +1,11 @@
 return {
   'nvim-telescope/telescope.nvim',
   dependencies = { 'nvim-lua/plenary.nvim' },
+  pickers = {
+    find_files = {
+      theme = "ivy"
+    }
+  },
   config = function()
     require('telescope').setup({})
     local builtin = require('telescope.builtin')
