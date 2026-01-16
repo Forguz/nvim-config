@@ -13,14 +13,8 @@ return {
     "j-hui/fidget.nvim",
   },
   config = function()
-    local cmp = require('cmp')
-    local cmp_lsp = require("cmp_nvim_lsp")
     local lspconfig = require("lspconfig")
-    local capabilities = vim.tbl_deep_extend(
-      "force",
-      {},
-      vim.lsp.protocol.make_client_capabilities(),
-      cmp_lsp.default_capabilities())
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
 
     require("fidget").setup({})
     require('mason').setup({
@@ -49,16 +43,22 @@ return {
         end,
         ts_ls = function()
           -- Create a copy of the base capabilities
-          local ts_ls_capabilities = vim.tbl_deep_extend("force", {}, capabilities)
+          local ts_ls_capabilities = vim.deepcopy(capabilities)
 
           -- 🛑 DISABLE DOCUMENT FORMATTING
-          ts_ls_capabilities.document_formatting = false
-          ts_ls_capabilities.document_range_formatting = false
+          ts_ls_capabilities.textDocument = ts_ls_capabilities.textDocument or {}
 
-          -- All other ts_ls features (diagnostics, completions, etc.) remain active
           lspconfig.ts_ls.setup {
             capabilities = ts_ls_capabilities,
-            -- ... other settings
+            init_options = {
+              preferences = {
+                disableSuggestions = true, -- Disable TS suggestions in favor of LSP/Blink
+              }
+            },
+            on_attach = function(client)
+              client.server_capabilities.documentFormattingProvider = false
+              client.server_capabilities.documentRangeFormattingProvider = false
+            end
           }
         end,
         lua_ls = function()
@@ -74,17 +74,15 @@ return {
           }
         end,
         eslint = function()
-          -- Create a copy of the base capabilities
-          local eslint_capabilities = vim.tbl_deep_extend("force", {}, capabilities)
-
-          -- 🛑 DISABLE DOCUMENT FORMATTING
-          eslint_capabilities.document_formatting = false
-          eslint_capabilities.document_range_formatting = false
           lspconfig.eslint.setup {
-            capabilities = eslint_capabilities,
+            capabilities = capabilities,
+            on_attach = function(client)
+              client.server_capabilities.documentFormattingProvider = false
+              client.server_capabilities.documentRangeFormattingProvider = false
+            end,
             settings = {
               experimental = {
-                useFlatConfig = nil, -- option not in the latest eslint-lsp
+                useFlatConfig = nil,
               },
             }
           }
@@ -109,26 +107,6 @@ return {
       end
     end, { desc = "Biome: Fix All (LSP Code Action)" })
 
-    local cmp_select = { behavior = cmp.SelectBehavior.Select }
-    cmp.setup({
-      snippet = {
-        expand = function(args)
-          require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        end,
-      },
-      mapping = cmp.mapping.preset.insert({
-        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-        ["<C-Space>"] = cmp.mapping.complete(),
-      }),
-      sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' }, -- For luasnip users.
-      }, {
-        { name = 'buffer' },
-      })
-    })
     vim.diagnostic.config({
       -- update_in_insert = true,
       float = {
