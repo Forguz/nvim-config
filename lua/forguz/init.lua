@@ -1,7 +1,7 @@
+require('forguz.dotenv').setup()
 require("forguz.remap")
 require("forguz.set")
 require('forguz.lazy_init')
-require('forguz.load_env').load_env()
 
 local augroup = vim.api.nvim_create_augroup
 local ForguzGroup = augroup('ForguzGroup', {})

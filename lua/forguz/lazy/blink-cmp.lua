@@ -15,6 +15,7 @@ return {
       ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
       ['<C-e>']     = { 'hide' },
       ['<C-y>']     = { 'select_and_accept' },
+      ['<Tab>']     = { 'select_and_accept' },
       ['<C-p>']     = { 'select_prev', 'fallback' },
       ['<C-n>']     = { 'select_next', 'fallback' },
 
@@ -29,6 +30,18 @@ return {
       nerd_font_variant = 'mono'
     },
 
+    completion = {
+      keyboard = {
+        range = 'prefix'
+      },
+      ghost_text = {
+        enabled = true,
+        show_with_menu = false
+      },
+      menu = {
+        auto_show = false
+      }
+    },
     -- Default sources
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
