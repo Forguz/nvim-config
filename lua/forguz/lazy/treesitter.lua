@@ -2,22 +2,36 @@ return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   config = function()
-    local configs = require("nvim-treesitter");
-    configs.setup({
-      -- A list of parser names, or "all" (the five listed parsers should always be installed)
-      ensure_installed = { "javascript", "typescript", "c", "lua", "vim", "vimdoc", "query", "markdown", "yaml", "markdown_inline" },
+    local ts = require("nvim-treesitter")
 
-      -- Install parsers synchronously (only applied to `ensure_installed`)
-      sync_install = false,
+    ts.setup()
 
-      -- Automatically install missing parsers when entering buffer
-      -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-      auto_install = true,
+    -- In the new version, use ts.install instead of ensure_installed in setup.
+    -- This is a no-op if the parsers are already installed.
+    ts.install({
+      "javascript",
+      "typescript",
+      "c",
+      "lua",
+      "vim",
+      "vimdoc",
+      "query",
+      "markdown",
+      "yaml",
+      "markdown_inline",
+      "svelte",
+      "html",
+      "css",
+    })
 
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-      },
+    -- Highlighting must be enabled manually in the new version.
+    vim.api.nvim_create_autocmd('FileType', {
+      callback = function()
+        local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
+        if lang then
+          pcall(vim.treesitter.start)
+        end
+      end,
     })
   end
 }

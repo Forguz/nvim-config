@@ -50,6 +50,7 @@ return {
         python = { "isort", "black" },
         c = { "clang_format" },
         vue = { "prettierd" },
+        svelte = { "prettierd", "eslint_d" },
 
         -- Use the dynamic function here
         javascript = get_js_formatter,

@@ -8,6 +8,7 @@ return {
       javascriptreact = { 'biomejs' },
       typescript = { 'biomejs' },
       typescriptreact = { 'biomejs' },
+      svelte = { 'eslint_d' },
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true });

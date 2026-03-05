@@ -21,6 +21,7 @@ return {
       ensure_installed = {
         'prettier',
         'prettierd',
+        'eslint_d',
       }
     })
     require('mason-lspconfig').setup({
@@ -33,7 +34,8 @@ return {
         'lua_ls',
         'tailwindcss',
         'rust_analyzer',
-        'biome'
+        'biome',
+        'svelte',
       },
       handlers = {
         function(server_name) -- default handler (optional)
@@ -91,12 +93,19 @@ return {
     })
 
     vim.keymap.set({ "n", "v" }, "<leader>mf", function()
+      local ft = vim.bo.filetype
+      local action_kind = "source.fixAll.biome"
+
+      if ft == "svelte" then
+        action_kind = "source.fixAll.eslint"
+      end
+
       -- Check if the LSP function is loaded before calling it
       if vim.lsp and vim.lsp.buf and vim.lsp.buf.code_action then
-        -- Trigger the Biome 'source.fixAll.biome' code action on the current buffer
+        -- Trigger the LSP code action on the current buffer
         vim.lsp.buf.code_action({
           context = {
-            only = { "source.fixAll.biome" },
+            only = { action_kind },
             isPreferred = true,
           },
           apply = true,
@@ -105,7 +114,7 @@ return {
       else
         print("LSP functions not available yet.")
       end
-    end, { desc = "Biome: Fix All (LSP Code Action)" })
+    end, { desc = "LSP: Fix All (ESLint/Biome)" })
 
     vim.diagnostic.config({
       -- update_in_insert = true,
